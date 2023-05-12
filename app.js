@@ -13,7 +13,12 @@ connectToDatabase()
 const app = express();
 
 app.use(express.json())
-app.use(cors())
+
+var corsOptions = {
+  origin: process.env.CORS_ORIGIN
+}
+
+app.use(cors(corsOptions))
 
 app.use((req, res, next) => {
   if (req.query.token !== process.env.TOKEN) {
